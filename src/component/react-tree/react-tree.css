@@ -1,0 +1,66 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.m-tree {
+    position: relative;
+    overflow: hidden;
+    margin-top: 40px;
+    margin-left: 40px;
+
+
+}
+
+.m-node .inner {
+    position: relative;
+    cursor: pointer;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.m-node .collapse {
+    position: absolute;
+    left: 0px;
+    cursor: pointer;
+}
+
+.m-node .caret-right:before {
+    font-size: 15px;
+    content: '\25B8';
+}
+
+.m-node .caret-down:before {
+    font-size: 15px;
+    content: '\25BE';
+}
+
+.inspector {
+    margin-left: 700px;
+}
+
+.inspector pre {
+    font-size: 14px;
+}
+
+.tree {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #21252B;
+}
+
+.m-node .inner {
+    color: white;
+}
+
+.m-node .node {
+    display: inline-block;
+    width: 100%;
+    padding: 4px 5px;
+}
+
