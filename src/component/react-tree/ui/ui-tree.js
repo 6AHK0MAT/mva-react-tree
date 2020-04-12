@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Tree from './tree';
+import Tree from 'js-tree'
 import Node from './node';
 
-export default class UITree extends Component {
+class UITree extends Component {
     static propTypes = {
         data: PropTypes.object.isRequired,
         paddingLeft: PropTypes.number,
@@ -19,8 +19,13 @@ export default class UITree extends Component {
 
         this.state = this.init(props);
     }
+    componentDidMount() {
+        // console.log('componentDidMount')
+        // console.log()
+    }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        // static getDerivedStateFromProps(nextProps) {
         if (!this._updated) {
             this.setState(this.init(nextProps));
         } else {
@@ -30,9 +35,9 @@ export default class UITree extends Component {
 
     init = props => {
         const data = new Tree(props.data);
-        data.isNodeCollapsed = props.isNodeCollapsed;
+        // data.isNodeCollapsed = props.isNodeCollapsed;
         data.renderNode = props.renderNode;
-        data.changeNodeCollapsed = props.changeNodeCollapsed;
+        // data.changeNodeCollapsed = props.changeNodeCollapsed;
         return {
             data: data,
         };
@@ -73,3 +78,4 @@ export default class UITree extends Component {
         this.change(data);
     };
 }
+export default UITree;

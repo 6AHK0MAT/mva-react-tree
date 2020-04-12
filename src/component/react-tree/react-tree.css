@@ -8,8 +8,6 @@ body {
     overflow: hidden;
     margin-top: 40px;
     margin-left: 40px;
-
-
 }
 
 .m-node .inner {
@@ -33,6 +31,10 @@ body {
 .m-node .caret-down:before {
     font-size: 15px;
     content: '\25BE';
+}
+
+.innerButton{
+    float: left;
 }
 
 .inspector {

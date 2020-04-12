@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import cm from 'classnames';
 import Tree from './ui/ui-tree';
-import data from '../state/data';
+import data from '../../store/state/data';
 import './react-tree.css';
+import {connect} from 'react-redux'
+import {getTreeData} from "../../store/actions/actions";
 
 class ReactTree extends  Component{
     state = {
@@ -29,6 +31,10 @@ class ReactTree extends  Component{
         });
     };
 
+    componentDidMount() {
+        this.props.getTreeData();
+    }
+
     render() {
         return (
             <div className="App">
@@ -46,7 +52,8 @@ class ReactTree extends  Component{
                         Исходный JSON
                     </h1>
                     <button onClick={this.updateTree}>Добавить ветку</button>
-                    <pre>{JSON.stringify(this.state.data, null, '  ')}</pre>
+                    <button onClick={() => this.deleteTree(15)}>Удалить ветку</button>
+                    <pre>{JSON.stringify(this.props.data, null, '  ')}</pre>
                 </div>
             </div>
         );
@@ -60,11 +67,41 @@ class ReactTree extends  Component{
 
     updateTree = () => {
         const { data } = this.state;
+        // console.log(data.children[0].children);
         data.children.push({ module: 'Новая ветка' });
+        data.children[0].children.push({ module: 'Новая ветка' });
+
+        this.setState({
+            data: data
+        });
+    };
+
+    deleteTree = (idVal) => {
+        const { data } = this.state;
+        console.log(data);
+        return
+        // let filteredArray = data.filter(item => item !== idVal)
+
+        // noinspection UnreachableCodeJS
+        // eslint-disable-next-line no-unreachable
         this.setState({
             data: data
         });
     };
 }
 
-export default ReactTree;
+function mapStateToProps(state) {
+    return {
+        data: state.TreeReducer.TreeArrRedux,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getTreeData: () => dispatch(getTreeData()),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ReactTree);
+
+
